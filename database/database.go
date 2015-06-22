@@ -1,6 +1,10 @@
 package database
 
-import "gopkg.in/mgo.v2"
+import (
+	"os"
+
+	"gopkg.in/mgo.v2"
+)
 
 var (
 	GMyDb *MyDb
@@ -15,7 +19,7 @@ func NewMyDb() *MyDb {
 	myDb := new(MyDb)
 
 	var err error
-	myDb.session, err = mgo.Dial("mongo")
+	myDb.session, err = mgo.Dial(os.Getenv("MONGODB_ADDRESS"))
 	if err != nil {
 		panic(err)
 	}
