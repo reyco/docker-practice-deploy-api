@@ -26,7 +26,7 @@ func NewMyDb() *MyDb {
 
 	// Optional. Switch the session to a monotonic behavior.
 	myDb.session.SetMode(mgo.Monotonic, true)
-	myDb.database = myDb.session.DB("test2")
+	myDb.database = myDb.session.DB(os.Getenv("MONGODB_DATABASE"))
 
 	return myDb
 }
